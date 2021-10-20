@@ -23,7 +23,7 @@ A kit of usefull helpers accessible via a facade.
 
 	public function try(callable $callback, ...$args): array;
 
-### optional
+### Optional
 
 	/**
      * Trying to access nested property.
