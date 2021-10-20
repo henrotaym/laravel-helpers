@@ -29,7 +29,7 @@ class Helpers
      * @param string|array $nested_properties Nested properties. Methods should be like ['method_name' => [$arg1, $arg2]]
      * @return Optional Nullable nested property.
      */
-    public function optional(object $element, ...$nested_properties)
+    public function optional(object $element, ...$nested_properties): Optional
     {
         foreach ($nested_properties as $nested_property):
             $element = $this->nestedNullable($element, $nested_property);
