@@ -41,7 +41,7 @@ class OptionalTest extends TestCase
     public function optional_nested_working_with_nested_methods_without_parameters()
     {
         $nesting = new Nesting;
-        $this->assertEquals("Francis", Helpers::optional($nesting, 'nestedFirst', 'nestedSecond')->name);
+        $this->assertEquals("Francis", Helpers::optional($nesting, 'nestedFirst()', 'nestedSecond()')->name);
     }
 
     /**
@@ -50,7 +50,7 @@ class OptionalTest extends TestCase
     public function optional_nested_working_with_nested_methods_with_parameters()
     {
         $nesting = new Nesting;
-        $this->assertEquals("Benoit", Helpers::optional($nesting, 'nestedFirst', ['nestedSecond' => ['Benoit']])->name);
+        $this->assertEquals("Benoit", Helpers::optional($nesting, 'nestedFirst()', ['nestedSecond' => ['Benoit']])->name);
     }
 
     /**
@@ -59,7 +59,7 @@ class OptionalTest extends TestCase
     public function optional_nested_working_with_undefined_nested_methods_with_parameter()
     {
         $nesting = new Nesting;
-        $this->assertNull(Helpers::optional($nesting, 'nestedFirst', ['nestedThird' => ['yolo']])->name);
+        $this->assertNull(Helpers::optional($nesting, 'nestedFirst()', ['nestedThird' => ['yolo']])->name);
     }
 
     /**
@@ -70,6 +70,6 @@ class OptionalTest extends TestCase
         $nesting = new Nesting;
         $test = new stdClass;
         $test->nesting = $nesting;
-        $this->assertEquals("Benoit", Helpers::optional($test, 'nesting', 'nestedFirst', ['nestedSecond' => ['Benoit']])->name);
+        $this->assertEquals("Benoit", Helpers::optional($test, 'nesting', 'nestedFirst()', ['nestedSecond' => ['Benoit']])->name);
     }
 }

@@ -34,7 +34,7 @@ class Helpers
         foreach ($nested_properties as $nested_property):
             $element = $this->nestedNullable($element, $nested_property);
             // Break first time we can't nest anymore.
-            if (!isset($element)):
+            if (!$element):
                 break;
             endif;
         endforeach;
@@ -51,22 +51,25 @@ class Helpers
      */
     protected function nestedNullable($element, $property, ...$args)
     {
+        $is_method_with_args = is_array($property);
         // If we try to launch a nested method with specific arguments
         // We call recursively this function and we should automatically match method case.
-        if (is_array($property)):
+        if ($is_method_with_args):
             foreach ($property as $method => $args):
-                return $this->nestedNullable($element, $method, ...$args);
+                return $this->nestedNullable($element, "$method()", ...$args);
             endforeach;
         endif;
         // Method case
-        if (method_exists($element, $property)):
-            return call_user_func_array([$element, $property], $args);
+        $parenthesis_position = strpos($property, '(');
+        if ($parenthesis_position):
+            $method_name = substr($property, 0, $parenthesis_position);
+            // Accessing undefined methods should return null instead of throwing
+            [, $value] = $this->try(function() use ($element, $method_name, $args) {
+                return optional($element)->$method_name(...$args);
+            });
+            return $value;
         endif;
         // Property case
-        if (property_exists($element, $property)):
-            return $element->$property;
-        endif;
-
-        return null;
+        return optional($element)->$property;
     }
 }

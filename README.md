@@ -29,7 +29,7 @@ A kit of usefull helpers accessible via a facade.
      * Trying to access nested property.
      * 
      * @param object $element
-     * @param string|array $nested_properties Nested properties. Methods should be like ['method_name' => [$arg1, $arg2]]
+     * @param string|array $nested_properties Nested properties. Methods should be like ['method_name' => [$arg1, $arg2]] OR method_name() if it doesn't need arguments.
      * @return Illuminate\Support\Optional Nullable nested property.
      */
     public function optional(object $element, ...$nested_properties): Illuminate\Support\Optional
