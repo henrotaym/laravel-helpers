@@ -3,6 +3,7 @@ namespace Henrotaym\LaravelHelpers;
 
 use Throwable;
 use Illuminate\Support\Optional;
+use Illuminate\Contracts\Queue\Job;
 
 class Helpers
 {
@@ -71,5 +72,38 @@ class Helpers
         endif;
         // Property case
         return optional($element)->$property;
+    }
+
+    /**
+     * Getting given job instance.
+     * 
+     * @param Job $job
+     * @return mixed Job instance or null if any error.
+     */
+    protected function getJobInstance(Job $job)
+    {
+        [, $job_instance] = $this->try(function() use ($job) {
+            return unserialize($job->payload()['data']['command']);
+        });
+
+        return $job_instance;
+    }
+
+    /**
+     * Executing given callback if serialized job is instance of given element.
+     * 
+     * @param Job $job
+     * @param mixed $instance_of Same parameter types as native php instanceof.
+     * @param callable $callback It receives job instance as first parameter.
+     * @return mixed Callback returned value or null if any error.
+     */
+    public function doIfJobIsInstanceOf(Job $job, $instance_of, callable $callback)
+    {
+        $instance = $this->getJobInstance($job);
+        if (!$instance || !$instance instanceof $instance_of):
+            return null;
+        endif;
+        
+        return $callback($instance);
     }
 }

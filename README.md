@@ -34,3 +34,15 @@ A kit of usefull helpers accessible via a facade.
      */
     public function optional(object $element, ...$nested_properties): Illuminate\Support\Optional
 
+### doIfJobIsInstanceOf
+
+	/**
+     * Executing given callback if serialized job is instance of given element.
+     * 
+     * @param Job $job
+     * @param mixed $instance_of Same parameter types as native php instanceof.
+     * @param callable $callback It receives job instance as first parameter.
+     * @return mixed Callback returned value or null if any error.
+     */
+    public function doIfJobIsInstanceOf(Job $job, $instance_of, callable $callback);
+
