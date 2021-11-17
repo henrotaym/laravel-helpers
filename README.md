@@ -46,3 +46,24 @@ A kit of usefull helpers accessible via a facade.
      */
     public function doIfJobIsInstanceOf(Job $job, $instance_of, callable $callback);
 
+### uuid
+
+     /**
+     * Creating unique uuid.
+     * 
+     * @param bool $allow_dash Telling if dashes are allowed in created uuid.
+     * @return string
+     */
+    public function uuid(bool $allow_dash = false): string;
+
+### str_contains
+
+    /**
+     * Telling if given string contains given substring.
+     * 
+     * @param string $haystack The string to search in.
+     * @param string $needle The string to search for.
+     * @return bool
+     */
+    public function str_contains(string $haystack, string $needle);
+

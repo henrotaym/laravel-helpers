@@ -2,11 +2,19 @@
 namespace Henrotaym\LaravelHelpers;
 
 use Throwable;
+use Illuminate\Support\Str;
 use Illuminate\Support\Optional;
 use Illuminate\Contracts\Queue\Job;
 
 class Helpers
 {
+    /**
+     * Prefix used by this package.
+     * 
+     * @var string
+     */
+    public static $prefix = "henrotaym_helpers";
+
     /**
      * Trying to execute given callback with given args.
      * 
@@ -105,5 +113,31 @@ class Helpers
         endif;
         
         return $callback($instance);
+    }
+
+    /**
+     * Creating unique uuid.
+     * 
+     * @param bool $allow_dash Telling if dashes are allowed in created uuid.
+     * @return string
+     */
+    public function uuid(bool $allow_dash = false): string
+    {
+        $uuid = Str::uuid();
+        return $allow_dash
+            ? $uuid
+            : str_replace('-', '', $uuid); 
+    }
+    
+    /**
+     * Telling if given string contains given substring.
+     * 
+     * @param string $haystack The string to search in.
+     * @param string $needle The string to search for.
+     * @return bool
+     */
+    public function str_contains(string $haystack, string $needle)
+    {
+        return strpos($haystack, $needle) !== false;
     }
 }
