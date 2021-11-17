@@ -8,7 +8,7 @@ class HelperServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bind("henrotaym_helpers", function($app) {
+        $this->app->bind(Helpers::$prefix, function($app) {
             return new Helpers();
         });
     }
