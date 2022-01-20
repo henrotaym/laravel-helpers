@@ -5,8 +5,12 @@ use Throwable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Optional;
 use Illuminate\Contracts\Queue\Job;
+use Henrotaym\LaravelHelpers\Contracts\HelpersContract;
 
-class Helpers
+/**
+ * Representing available helpers.
+ */
+class Helpers implements HelpersContract
 {
     /**
      * Prefix used by this package.
