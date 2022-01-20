@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24544d5ac62515db33355f52d65b046a",
-    "packages": [],
+    "content-hash": "d5dc134bd0ada9bd4841960203c2926e",
+    "packages": [
+        {
+            "name": "henrotaym/laravel-test-suite",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/henrotaym/laravel-test-suite.git",
+                "reference": "40d802dba0641af84fac8aa1ac46e9b8e0db94df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/henrotaym/laravel-test-suite/zipball/40d802dba0641af84fac8aa1ac46e9b8e0db94df",
+                "reference": "40d802dba0641af84fac8aa1ac46e9b8e0db94df",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Henrotaym\\LaravelTestSuite\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathieu Henrotay",
+                    "email": "mathieu.henrotay@gmail.com"
+                }
+            ],
+            "description": "Adding recurrent functionalities to laravel test suite.",
+            "support": {
+                "issues": "https://github.com/henrotaym/laravel-test-suite/issues",
+                "source": "https://github.com/henrotaym/laravel-test-suite/tree/v2.1.0"
+            },
+            "time": "2021-11-30T14:24:11+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "brick/math",

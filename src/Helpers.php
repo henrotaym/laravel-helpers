@@ -6,12 +6,31 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Optional;
 use Illuminate\Contracts\Queue\Job;
 use Henrotaym\LaravelHelpers\Contracts\HelpersContract;
+use Henrotaym\LaravelHelpers\Auth\Contracts\BasicAuthHelpersContract;
 
 /**
  * Representing available helpers.
  */
 class Helpers implements HelpersContract
 {
+
+    /**
+     * Helpers concerning basic auth.
+     * 
+     * @var BasicAuthHelpersContract
+     */
+    protected $basic_auth_helpers;
+
+    /**
+     * Injecting dependencies.
+     * 
+     * @param BasicAuthHelpersContract $basic_auth_helpers
+     */
+    public function __construct(BasicAuthHelpersContract $basic_auth_helpers)
+    {
+        $this->basic_auth_helpers = $basic_auth_helpers;
+    }
+
     /**
      * Prefix used by this package.
      * 
@@ -140,8 +159,30 @@ class Helpers implements HelpersContract
      * @param string $needle The string to search for.
      * @return bool
      */
-    public function str_contains(string $haystack, string $needle)
+    public function str_contains(string $haystack, string $needle): bool
     {
         return strpos($haystack, $needle) !== false;
+    }
+
+    /**
+     * Telling if given string starts with given substring.
+     * 
+     * @param string $haystack The string to search in.
+     * @param string $needle The string to search for.
+     * @return bool
+     */
+    public function str_starts_with(string $haystack, string $needle): bool
+    {
+        return strpos($haystack, $needle) === 0;
+    }
+
+    /**
+     * Getting available helpers concerning basic auth.
+     * 
+     * @return BasicAuthHelpersContract
+     */
+    public function basicAuth(): BasicAuthHelpersContract
+    {
+        return $this->basic_auth_helpers;
     }
 }

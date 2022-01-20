@@ -5,6 +5,7 @@ use Throwable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Optional;
 use Illuminate\Contracts\Queue\Job;
+use Henrotaym\LaravelHelpers\Auth\Contracts\BasicAuthHelpersContract;
 
 /**
  * Representing available helpers.
@@ -54,5 +55,21 @@ interface HelpersContract
      * @param string $needle The string to search for.
      * @return bool
      */
-    public function str_contains(string $haystack, string $needle);
+    public function str_contains(string $haystack, string $needle): bool;
+
+    /**
+     * Telling if given string starts with given substring.
+     * 
+     * @param string $haystack The string to search in.
+     * @param string $needle The string to search for.
+     * @return bool
+     */
+    public function str_starts_with(string $haystack, string $needle): bool;
+
+    /**
+     * Getting available helpers concerning basic auth.
+     * 
+     * @return BasicAuthHelpersContract
+     */
+    public function basicAuth(): BasicAuthHelpersContract;
 }
