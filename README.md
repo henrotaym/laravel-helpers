@@ -67,3 +67,13 @@ A kit of usefull helpers accessible via a facade.
      */
     public function str_contains(string $haystack, string $needle);
 
+### getDirectory
+
+    /**
+     * Getting directory where the file is located.
+     * 
+     * @param string $class
+     * @return string|null Null if any error.
+     */
+    public function getDirectory(string $class): ?string;
+
