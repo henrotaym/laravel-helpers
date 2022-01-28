@@ -7,6 +7,7 @@ use Illuminate\Support\Optional;
 use Illuminate\Contracts\Queue\Job;
 use Henrotaym\LaravelHelpers\Contracts\HelpersContract;
 use Henrotaym\LaravelHelpers\Auth\Contracts\BasicAuthHelpersContract;
+use ReflectionClass;
 
 /**
  * Representing available helpers.
@@ -174,6 +175,27 @@ class Helpers implements HelpersContract
     public function str_starts_with(string $haystack, string $needle): bool
     {
         return strpos($haystack, $needle) === 0;
+    }
+
+    /**
+     * Getting directory where the file is located.
+     * 
+     * @param string $class
+     * @return string|null Null if any error.
+     */
+    public function getDirectory(string $class): ?string
+    {
+        if (!class_exists($class)):
+            return null;
+        endif;
+
+        $path = (new ReflectionClass($class))->getFileName();
+
+        if (!$path):
+            return null;
+        endif;
+
+        return dirname($path);
     }
 
     /**

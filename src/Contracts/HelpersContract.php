@@ -67,6 +67,14 @@ interface HelpersContract
     public function str_starts_with(string $haystack, string $needle): bool;
 
     /**
+     * Getting directory where the file is located.
+     * 
+     * @param string $class
+     * @return string|null Null if any error.
+     */
+    public function getDirectory(string $class): ?string;
+
+    /**
      * Getting available helpers concerning basic auth.
      * 
      * @return BasicAuthHelpersContract
